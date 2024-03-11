@@ -1,3 +1,7 @@
+# Social App
+
+## This project is a quasi Twitter. The application was built to demonstrate knowledge of React.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
