@@ -1,6 +1,6 @@
 # Social App
 
-## This project is a quasi Twitter. The application was built to demonstrate knowledge of React.
+This project is a quasi Twitter. The application was built to demonstrate knowledge of React.
 
 # Getting Started with Create React App
 
