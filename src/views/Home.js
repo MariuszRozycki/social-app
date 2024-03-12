@@ -47,18 +47,20 @@ const Home = () => {
     getLatestsPosts();
   }, []);
 
+  const nextPostsBtn = (
+    <button className="btn loadMore" onClick={getNextPosts}>
+      Load more
+    </button>
+  );
+
   return (
     <div className="home">
       <div className="postList">
+        {isLoading && <Loader />}
         {posts.map((post) => {
           return <Post post={post} key={post.id} />;
         })}
-        {(isLoading && <Loader />) ||
-          (!isLoading && (
-            <button className="btn loadMore" onClick={getNextPosts}>
-              Load more
-            </button>
-          ))}
+        {!isLoading && nextPostsBtn}
       </div>
     </div>
   );
