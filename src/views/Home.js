@@ -5,7 +5,8 @@ import { baseApi } from "../api/baseApi";
 import Post from "../components/Post";
 import Loader from "../components/Loader";
 
-const Home = () => {
+const Home = (props) => {
+  const { user } = props;
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -45,7 +46,7 @@ const Home = () => {
 
   useEffect(() => {
     getLatestsPosts();
-  }, []);
+  }, [user]);
 
   const nextPostsBtn = (
     <button className="btn loadMore" onClick={getNextPosts}>
