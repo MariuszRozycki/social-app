@@ -4,6 +4,7 @@ import axios from "axios";
 import { baseApi } from "../api/baseApi";
 import Post from "../components/Post";
 import Loader from "../components/Loader";
+import AddPost from "../components/AddPost";
 
 const Home = (props) => {
   const { user } = props;
@@ -17,6 +18,24 @@ const Home = (props) => {
       .post(latestsPostsApi)
       .then((response) => {
         setPosts(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  const getPrevPosts = () => {
+    setIsLoading(true);
+    const newerPostsApi = baseApi + "post/newer-then";
+    axios
+      .post(newerPostsApi, {
+        date: posts[0].created_at,
+      })
+      .then((response) => {
+        setPosts(response.data.concat(posts));
       })
       .catch((error) => {
         console.error(error);
@@ -56,6 +75,7 @@ const Home = (props) => {
 
   return (
     <div className="home">
+      {user && <AddPost getPrevPosts={getPrevPosts} />}
       <div className="postList">
         {isLoading && <Loader />}
         {posts.map((post) => {
