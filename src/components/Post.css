@@ -43,3 +43,28 @@
 .post .postData .likes {
   text-align: right;
 }
+
+.deleteModal {
+  position: fixed;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+}
+
+.modalBtnWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.deleteModal .yes {
+  background-color: green;
+  width: 90px;
+}
+
+.deleteModal .no {
+  background-color: red;
+  width: 90px;
+}
