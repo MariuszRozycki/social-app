@@ -20,6 +20,10 @@ const Post = (props) => {
   const [likesCount, setLikesCount] = useState(likes.length);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
+  const likesArray =
+    likes.filter((like) => like.username === username).length !== 0;
+  const [doesUserLiked, setDoesUserLiked] = useState(likesArray);
+
   const deletePost = (id) => {
     const deletePostApi = baseApi + "post/delete";
     console.log(deletePostApi);
@@ -30,10 +34,10 @@ const Post = (props) => {
       .then((res) => {
         console.log(res.data);
         setPosts((posts) => {
-          const updatedPostslist = posts.filter(
+          const updatedPostsList = posts.filter(
             (post) => post.id !== res.data.post_id
           );
-          return updatedPostslist;
+          return updatedPostsList;
         });
         setDeleteModalVisible(false);
       })
@@ -47,6 +51,23 @@ const Post = (props) => {
       Delete
     </button>
   );
+
+  const likeBtn = (
+    <button className="btn" onClick={() => likePost(id, doesUserLiked)}>
+      {doesUserLiked ? "dislike" : "Like"}
+    </button>
+  );
+
+  const likePost = (id, isLiked) => {
+    axios
+      .post(baseApi + (isLiked ? "post/dislike" : "post/like"), {
+        post_id: id,
+      })
+      .then(() => {
+        setLikesCount(likesCount + (isLiked ? -1 : 1));
+        setDoesUserLiked(!isLiked);
+      });
+  };
 
   return (
     <div className="post">
@@ -62,6 +83,7 @@ const Post = (props) => {
 
         <div className="likes">
           {postUsername === username && deletePostBtn}
+          {username && likeBtn}
           {likesCount}
         </div>
       </div>
