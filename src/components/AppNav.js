@@ -15,13 +15,13 @@ const AppNav = (props) => {
       .post(userLogoutApi)
       .then((response) => {
         if (response.data.message) {
-          setUser(null);
-          localStorage.setItem("user", null);
+          setUser("");
+          localStorage.removeItem("user");
         }
       })
       .catch((error) => {
-        setUser(null);
-        localStorage.setItem("user", null);
+        setUser("");
+        localStorage.removeItem("user");
         console.error(error);
       });
   };

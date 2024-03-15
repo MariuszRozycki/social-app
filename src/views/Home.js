@@ -79,7 +79,9 @@ const Home = (props) => {
       <div className="postList">
         {isLoading && <Loader />}
         {posts.map((post) => {
-          return <Post post={post} key={post.id} />;
+          return (
+            <Post post={post} key={post.id} user={user} setPosts={setPosts} />
+          );
         })}
         {!isLoading && nextPostsBtn}
       </div>
