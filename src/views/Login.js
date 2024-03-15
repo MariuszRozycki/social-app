@@ -5,7 +5,6 @@ import axios from "axios";
 import { Navigate } from "react-router-dom";
 
 const Login = (props) => {
-  const { setUser, user } = props;
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -42,7 +41,7 @@ const Login = (props) => {
           setLoginMessage("Incorrect username or password");
         } else {
           setLoginMessage("");
-          setUser(response.data);
+          props.setUser(response.data);
           localStorage.setItem("user", JSON.stringify(response.data));
         }
       })
@@ -53,7 +52,7 @@ const Login = (props) => {
 
   return (
     <div className="login">
-      {user && <Navigate to={"/"} />}
+      {props.user && <Navigate to={"/"} />}
       <form onSubmit={handleSubmit}>
         {loginMessage && <h2>{loginMessage}</h2>}
         <input
