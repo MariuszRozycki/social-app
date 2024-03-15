@@ -4,25 +4,13 @@ import axios from "axios";
 import { baseApi } from "../api/baseApi";
 
 const Post = (props) => {
-  const {
-    user: { username },
-    post: {
-      user: { avatar_url, username: postUsername },
-      created_at,
-      content,
-      likes,
-      id,
-    },
-    setPosts,
-  } = props;
-
-  const localDate = new Date(created_at);
-  const [likesCount, setLikesCount] = useState(likes.length);
+  const localDate = new Date(props.post.created_at);
+  const [likesCount, setLikesCount] = useState(props.post.likes.length);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
-
-  const likesArray =
-    likes.filter((like) => like.username === username).length !== 0;
-  const [doesUserLiked, setDoesUserLiked] = useState(likesArray);
+  const [doesUserLiked, setDoesUserLiked] = useState(
+    props.post.likes.filter((like) => like.username === props.user?.username)
+      .length !== 0
+  );
 
   const deletePost = (id) => {
     const deletePostApi = baseApi + "post/delete";
@@ -33,7 +21,7 @@ const Post = (props) => {
       })
       .then((res) => {
         console.log(res.data);
-        setPosts((posts) => {
+        props.setPosts((posts) => {
           const updatedPostsList = posts.filter(
             (post) => post.id !== res.data.post_id
           );
@@ -47,13 +35,19 @@ const Post = (props) => {
   };
 
   const deletePostBtn = (
-    <button onClick={() => setDeleteModalVisible(true)} className="btn">
+    <button
+      onClick={() => setDeleteModalVisible(true)}
+      className="btn deletePostBtn"
+    >
       Delete
     </button>
   );
 
   const likeBtn = (
-    <button className="btn" onClick={() => likePost(id, doesUserLiked)}>
+    <button
+      className="btn"
+      onClick={() => likePost(props.post.id, doesUserLiked)}
+    >
       {doesUserLiked ? "dislike" : "Like"}
     </button>
   );
@@ -69,21 +63,45 @@ const Post = (props) => {
       });
   };
 
+  const unFollow = (id) => {
+    const disfollowApi = baseApi + "follows/disfollow";
+
+    axios
+      .post(disfollowApi, {
+        leader_id: id,
+      })
+      .then(() => {
+        props.getLatestsPosts();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const unfollowBtn = (
+    <button className="btn" onClick={() => unFollow(props.post.user.id)}>
+      Unfollow
+    </button>
+  );
+
   return (
     <div className="post">
       <div className="avatar">
-        <img src={avatar_url} alt={postUsername} />
+        <img src={props.post.user.avatar_url} alt={props.post.user.username} />
       </div>
       <div className="postData">
         <div className="postMeta">
-          <div className="author">{postUsername}</div>
+          <div className="author">{props.post.user.username}</div>
           <div className="date">{localDate.toLocaleString()}</div>
         </div>
-        <div className="postContent">{content}</div>
+        <div className="postContent">{props.post.content}</div>
 
         <div className="likes">
-          {postUsername === username && deletePostBtn}
-          {username && likeBtn}
+          {props.user?.username === props.post.user.username && deletePostBtn}
+          {props.user &&
+            props.user.username !== props.post.user.username &&
+            unfollowBtn}
+          {props.user && likeBtn}
           {likesCount}
         </div>
       </div>
@@ -94,7 +112,7 @@ const Post = (props) => {
             <button
               className="btn yes"
               onClick={() => {
-                deletePost(id);
+                deletePost(props.post.id);
               }}
             >
               Yes

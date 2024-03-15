@@ -4,7 +4,6 @@ import axios from "axios";
 import { baseApi } from "../api/baseApi";
 
 const AddPost = (props) => {
-  const { getPrevPosts } = props;
   const [postContent, setPostContent] = useState("");
   const addPost = (e) => {
     e.preventDefault();
@@ -19,7 +18,7 @@ const AddPost = (props) => {
         content: postContent,
       })
       .then(() => {
-        getPrevPosts();
+        props.getPrevPosts();
         setPostContent("");
       })
       .catch((error) => {

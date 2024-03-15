@@ -41,7 +41,18 @@
 }
 
 .post .postData .likes {
-  text-align: right;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 10px;
+}
+
+.post .deletePostBtn {
+  background-color: brown;
+}
+
+.post .deletePostBtn:hover {
+  background-color: red;
 }
 
 .deleteModal {
