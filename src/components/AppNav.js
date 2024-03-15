@@ -4,8 +4,6 @@ import { baseApi } from "../api/baseApi";
 import axios from "axios";
 
 const AppNav = (props) => {
-  const { user, setUser } = props;
-
   const handleLogout = (e) => {
     e.preventDefault();
 
@@ -15,12 +13,12 @@ const AppNav = (props) => {
       .post(userLogoutApi)
       .then((response) => {
         if (response.data.message) {
-          setUser("");
+          props.setUser("");
           localStorage.removeItem("user");
         }
       })
       .catch((error) => {
-        setUser("");
+        props.setUser("");
         localStorage.removeItem("user");
         console.error(error);
       });
@@ -32,17 +30,17 @@ const AppNav = (props) => {
         <li>
           <Link to="/">Home</Link>
         </li>
-        {!user && (
+        {!props.user && (
           <li>
             <Link to="/login">Login</Link>
           </li>
         )}
-        {!user && (
+        {!props.user && (
           <li>
             <Link to="/signup">Sign Up</Link>
           </li>
         )}
-        {user && (
+        {props.user && (
           <li>
             <Link to="/" onClick={handleLogout}>
               Logout
