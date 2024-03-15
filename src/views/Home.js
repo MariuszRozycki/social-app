@@ -5,9 +5,9 @@ import { baseApi } from "../api/baseApi";
 import Post from "../components/Post";
 import Loader from "../components/Loader";
 import AddPost from "../components/AddPost";
+import FollowRecommendations from "../components/FollowRecommendations";
 
 const Home = (props) => {
-  const { user } = props;
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -65,7 +65,7 @@ const Home = (props) => {
 
   useEffect(() => {
     getLatestsPosts();
-  }, [user]);
+  }, [props.user]);
 
   const nextPostsBtn = (
     <button className="btn loadMore" onClick={getNextPosts}>
@@ -73,14 +73,37 @@ const Home = (props) => {
     </button>
   );
 
+  const userName = props.user?.username ?? "";
+  const userNameWelcome = (
+    <h1>Hi {userName.charAt(0).toUpperCase() + userName.slice(1)}!</h1>
+  );
+
+  const notLogged = (
+    <h1 className="login-message">Log in to get full access</h1>
+  );
+
   return (
     <div className="home">
-      {user && <AddPost getPrevPosts={getPrevPosts} />}
+      {props.user?.username ? userNameWelcome : notLogged}
+      {props.user && <AddPost getPrevPosts={getPrevPosts} />}
+      {props.user && (
+        <FollowRecommendations
+          user={props.user}
+          getLatestsPosts={getLatestsPosts}
+          posts={posts}
+        />
+      )}
       <div className="postList">
         {isLoading && <Loader />}
         {posts.map((post) => {
           return (
-            <Post post={post} key={post.id} user={user} setPosts={setPosts} />
+            <Post
+              post={post}
+              key={post.id}
+              user={props.user}
+              setPosts={setPosts}
+              getLatestsPosts={getLatestsPosts}
+            />
           );
         })}
         {!isLoading && nextPostsBtn}
