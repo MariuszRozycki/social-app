@@ -14,13 +14,12 @@ const Post = (props) => {
 
   const deletePost = (id) => {
     const deletePostApi = baseApi + "post/delete";
-    console.log(deletePostApi);
+
     axios
       .post(deletePostApi, {
         post_id: id,
       })
       .then((res) => {
-        console.log(res.data);
         props.setPosts((posts) => {
           const updatedPostsList = posts.filter(
             (post) => post.id !== res.data.post_id

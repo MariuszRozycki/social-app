@@ -9,6 +9,7 @@ const Login = (props) => {
     username: "",
     password: "",
   });
+
   const [loginMessage, setLoginMessage] = useState("");
 
   const handleInputChange = (e) => {
@@ -32,7 +33,6 @@ const Login = (props) => {
         password: formData.password,
       })
       .then((response) => {
-        console.log(response.data);
         if (Array.isArray(response.data.username)) {
           setLoginMessage(response.data.username[0]);
         } else if (Array.isArray(response.data.password)) {

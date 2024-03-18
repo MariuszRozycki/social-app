@@ -12,7 +12,6 @@ const FollowRecommendations = (props) => {
       .post(recommendationsApi)
       .then((res) => {
         setRecommendations(res.data);
-        console.log(res.data);
       })
       .catch((error) => {
         console.error(error);
