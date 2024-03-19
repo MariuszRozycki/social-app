@@ -1,10 +1,65 @@
 # Social App
 
-This project is a quasi Twitter. The application was built to demonstrate knowledge of React.
+## App View
 
-# Getting Started with Create React App
+<img width="488" alt="image" src="https://github.com/MariuszRozycki/social-app/assets/55709542/da6880a4-c953-4d21-a4f8-42f046a97de2">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+##
+This project it is a quasi Twitter app. The application was built to demonstrate knowledge of React.
+
+It was created exclusively with functional components and shared hooks.
+
+## Application descriptiom
+
+### View of a non-logged in user:
+
+- Navigation menu with links to the home page (Home), login page (Login), registration page (Signup)
+
+### The Home page with a list of posts:
+
+- A list of 10 posts with a Load more button underneath which, when clicked, downloads the next 10 posts
+- The single post view displays the username, date added, content, avatar and number of likes
+
+### The Login page:
+
+- The login page contains a login form with username and password fields
+
+#### Login fail:
+
+- If logging in is not successful, appropriate messages are displayed
+
+#### Login success
+
+- If login is successful, we are redirected to the home page
+
+### The Sign up page:
+
+- The Sign up page contains a registration form with username, email, password and confirmPassword fields
+
+#### Fields must be validated according to the rules:
+
+- username (username) – cannot be empty, min. 4 characters, cannot contain whitespace
+- email address – cannot be empty, cannot contain whitespace, it must be a valid email address
+- password – cannot be empty, min. 6 characters, must contain at least 1 digit, must contain at least one special character from the following: ! #@$%
+- password confirmation (confirmPassword) – it must be identical to the password field
+
+#### Sign up success:
+
+- If the registration was successful, we deactivate the form submit button and display a button redirecting to registration
+
+### Logged in user view:
+
+- Navigation menu with a link to the home page (Home) and a logout link, which, when clicked, logs the user out
+- Home page with a list of posts
+- A list of 10 posts with a Load more button underneath which, when clicked, downloads the next 10 posts
+- The single post view displays the username, date added, content, avatar and number of likes, as well as the like/dislike button
+- Additionally, if the post is added by the currently logged in user, there is a Delete post button.
+- Additionally, if the post is not added by the currently logged in user, there is an Unfollow button.
+- Above the list of posts there is a box displaying profiles recommended for following - each proposed profile has a Follow button, clicking which adds this profile to following.
+- Above the list of profiles recommended for tracking, there is a form for adding a post with a text field and an Add button allowing the currently logged in user to add a post.
+
+# Getting Started with Social App
 
 ## Available Scripts
 
@@ -17,58 +72,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
