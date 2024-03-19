@@ -1,10 +1,16 @@
 # Social App
 
+## App View
+
+<img width="488" alt="image" src="https://github.com/MariuszRozycki/social-app/assets/55709542/da6880a4-c953-4d21-a4f8-42f046a97de2">
+
+
+##
 This project it is a quasi Twitter app. The application was built to demonstrate knowledge of React.
 
 It was created exclusively with functional components and shared hooks.
 
-## Application views
+## Application descriptiom
 
 ### View of a non-logged in user:
 
