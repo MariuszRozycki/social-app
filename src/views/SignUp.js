@@ -60,9 +60,7 @@ const SignUp = (props) => {
 
     /* Email */
     if (
-      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i.test(
-        formData.email.trim()
-      )
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email.trim())
     ) {
       validationErrors.email = true;
       setErrors((prevErrors) => {
@@ -161,7 +159,6 @@ const SignUp = (props) => {
     if (!validate()) {
       return;
     }
-    console.log("Wysylam");
 
     const userSignUpApi = baseApi + "user/signup";
 
