@@ -10,7 +10,7 @@ This project it is a quasi Twitter app. The application was built to demonstrate
 
 It was created exclusively with functional components and shared hooks.
 
-## Application descriptiom
+## Application description
 
 ### View of a non-logged in user:
 
