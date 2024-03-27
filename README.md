@@ -24,6 +24,13 @@ It was created exclusively with functional components and shared hooks.
 ### The Login page:
 
 - The login page contains a login form with username and password fields
+  
+Important! Adding a new user involves sending an object with the fields: username, email, and password (the user is NOT physically added to the database, but the API simulates the real process of adding a user. It returns an object with information that the registration was completed successfully or with an error).
+
+For logging, use: <br>
+"username": "adam",<br>
+"password": "1234"
+
 
 #### Login fail:
 
