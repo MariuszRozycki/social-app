@@ -3,6 +3,7 @@ import { useState } from "react";
 import { baseApi } from "../api/baseApi";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
+import LoginInfo from "../components/LoginInfo";
 
 const Login = (props) => {
   const [formData, setFormData] = useState({
@@ -53,6 +54,7 @@ const Login = (props) => {
   return (
     <div className="login">
       {props.user && <Navigate to={"/"} />}
+      <LoginInfo />
       <form onSubmit={handleSubmit}>
         {loginMessage && <h2>{loginMessage}</h2>}
         <input

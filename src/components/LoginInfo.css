@@ -1,0 +1,28 @@
+.loginInfo {
+  max-width: 300px;
+  background-color: brown;
+  border-radius: 5px;
+  color: wheat;
+  margin: 10px auto;
+}
+
+.loginInfo p {
+  margin: 0 auto;
+  padding: 5px;
+  font-weight: 600;
+}
+
+.loginInfo p:nth-of-type(1) {
+  padding-top: 15px;
+  font-size: larger;
+}
+
+.loginInfo p:nth-of-type(2),
+.loginInfo p:nth-of-type(3) {
+  padding-bottom: 0px;
+}
+
+.loginInfo p:nth-last-of-type(1) {
+  padding-top: 0;
+  padding-bottom: 15px;
+}
